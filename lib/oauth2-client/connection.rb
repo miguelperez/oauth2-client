@@ -112,7 +112,9 @@ module OAuth2Client
       when :get, :delete
         response = client.send(method, normalized_path, headers)
       when :post, :put
-        response = client.send(method, path, query, headers)
+        request = Net::HTTP::Post.new(path)
+        request.set_form_data(params)
+        response = client.request(request)
       else
         raise UnhandledHTTPMethodError.new("Unsupported HTTP method, #{method}")
       end

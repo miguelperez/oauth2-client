@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.signing_key      = File.expand_path("~/.gem/certs/private_key.pem") if $0 =~ /gem\z/
 
   spec.add_dependency 'addressable', '~> 2.3'
-  spec.add_dependency 'bcrypt-ruby', '~> 3.0'
+  spec.add_dependency 'bcrypt', '~> 3.1'
 
   spec.add_development_dependency 'bundler', '~> 1.0'
   spec.add_development_dependency 'rake'

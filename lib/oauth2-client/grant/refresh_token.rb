@@ -9,14 +9,13 @@ module OAuth2Client
       # Retrieve an access token for a given refresh token
       #
       # @param [String] refresh_token     refresh token
-      # @param [Hash]   params additional params
       # @param [Hash]   opts options
       def get_token(refresh_token, opts={})
-        params  = opts[:params] || {}
-        opts[:params] = params.merge!({
+        opts[:params] = {
           :grant_type    => grant_type,
-          :refresh_token => refresh_token 
-        })
+          :refresh_token => refresh_token
+        }.merge(opts.fetch(:params, {}))
+
         opts[:authenticate] ||= :headers
         method = opts.delete(:method) || :post
         make_request(method, @token_path, opts)
